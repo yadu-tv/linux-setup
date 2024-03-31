@@ -5,32 +5,25 @@
 
 * Updating the system
   ```bash
-  sudo apt update && sudo apt upgrade
+  sudo apt update && sudo apt upgrade -y
+  ```
+
+  ```bash
+  sudo apt-get dist-upgrade -y
   ```
 
 * Installing necessary applications
   ```bash
-  sudo apt install git curl vlc ffmpeg build-essential nautilus vim neovim htop neofetch thefuck
+  sudo apt install git curl vlc ffmpeg build-essential nautilus vim neovim htop neofetch thefuck gparted p7zip-rar ntfs-config usbmount cmake ssh openssh-server gedit-latex-plugin -y
   ```
 
-* Initialise thefuck in ~/.bashrc or ~/.zshrc
-    * If you use bash
-        ```bash
-        nano ~/.bashrc
-        ```
-
-    * If you use zsh
-        ```bash
-        nano ~/.zshrc
-        ```
-
-    * Add the following to the file
-        ```bash
-        # Thefuck plugin
-        eval $(thefuck --alias)
-        # You can use whatever you want as an alias, like for Mondays:
-        eval $(thefuck --alias FUCK)
-        ```
+* Initialise thefuck
+    ```bash
+    # Thefuck plugin
+    eval $(thefuck --alias)
+    # You can use whatever you want as an alias, like for Mondays:
+    eval $(thefuck --alias FUCK)
+    ```
 
 ## Setting up Github SSH Key
 
@@ -70,19 +63,7 @@
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
     ```
 
-* Update ~/.bashrc or ~/.zshrc if not automatically updated 
-
-    * If you use bash
-        ```bash
-        nano ~/.bashrc
-        ```
-
-    * If you use zsh
-        ```bash
-        nano ~/.zshrc
-        ```
-
-* Add the following to the shell config file
+* Initialise NVM 
     ```bash
     export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
@@ -104,19 +85,7 @@
     curl https://pyenv.run | bash
     ```
 
-* Update ~/.bashrc or ~/.zshrc if not automatically updated 
-
-    * If you use bash
-        ```bash
-        nano ~/.bashrc
-        ```
-
-    * If you use zsh
-        ```bash
-        nano ~/.zshrc
-        ```
-
-* Add the following to the shell config file
+* Initialise PyEnv
     ```bash
     export PYENV_ROOT="$HOME/.pyenv"
     [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
@@ -174,6 +143,23 @@
     conda deactivate
     ```
 
+### Installing JDK
+
+* Find the version of JDK
+    ```bash
+    apt search openjdk
+    ```
+
+* Enter this command to install JDK
+    ```bash
+    sudo apt install openjdk-<JDK_VERSION>-jdk -y
+    ```
+
+* Add the following to the shell file
+    ```bash
+    export JAVA_HOME=/usr/lib/jvm/java-<JDK_VERSION>-openjdk
+    ```
+
 ## Other Applications
 
 [VS Code](https://code.visualstudio.com/download)
@@ -186,4 +172,9 @@ The following DPKG applications above can be installed by using the command belo
 
 ```bash
 sudo dpkg -i /path/to/file
+```
+
+## Cleaning
+```bash
+sudo apt-get autoclean
 ```
